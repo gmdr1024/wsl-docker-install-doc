@@ -11,8 +11,11 @@ Document for Docker dev
 
 ### Install WSL2 & Ubuntu 20.04 LTS
 - [参考：公式手順](https://learn.microsoft.com/ja-jp/windows/wsl/install) 
-- Powershell
-  - `wsl --install -d Ubuntu-20.04`
+- WSL2を未インストールの場合
+  - Powershell
+    - `wsl --install -d Ubuntu-20.04`
+- WSL2をインストール済の場合
+  - [Ubuntu 20.04 - Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-2004/9N6SVWS3RX71?hl=ja-jp&gl=jp)からUbuntuをインストール
 - WSL(Ubuntu)
   - Linuxユーザー名とパスワードを設定
 
@@ -61,6 +64,13 @@ Document for Docker dev
 - Windows
   - スタート → 設定 → アプリ → Ubuntu 20.04
   - 詳細オプション → 「リセット」ボタン
+- 上記手順後、Ubuntuの初回起動画面で以下のエラーになることがある
+  - `Error code: Wsl/Service/CreateInstance/MountVhd/ERROR_FILE_NOT_FOUND`
+- その際は、以下を実施してからUbuntuを再起動する
+  - Powershell
+    - `wsl --unregister Ubuntu-20.04` 
+      - WSLからUbuntuの登録を解除
+      - WSLに登録中のLinuxディストリビューションは、`wsl -l`で確認できる
 
 ### Install code
 - Windows
