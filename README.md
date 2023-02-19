@@ -7,7 +7,7 @@ Document for Docker dev
 ## Install
 
 ### Install Windows Terminal
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. [Windows Terminal - Microsoft Store](https://aka.ms/terminal)からWindowsターミナルをインストール
 
@@ -18,7 +18,7 @@ Document for Docker dev
 
 ##### WSLを未インストールの場合
 
-![](https://img.shields.io/badge/-Powershell-blue)
+![Powershell](https://img.shields.io/badge/-Powershell-blue)
 
 1. WSLとUbuntuをインストール
 
@@ -28,16 +28,16 @@ wsl --install -d Ubuntu-20.04
 
 ##### WSLをインストール済の場合
 
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. [Ubuntu 20.04 - Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-2004/9N6SVWS3RX71?hl=ja-jp&gl=jp)からUbuntuをインストール
 
 #### Ubuntu初期設定
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. WindowsターミナルからUbuntuを起動
 
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 2. Linuxユーザー名とパスワードを設定
 
@@ -47,7 +47,7 @@ wsl --install -d Ubuntu-20.04
   - `1.`の手順内の`apt`パッケージは`Ubuntu-20.04 LTS`ではすべて初期状態でインストール済であるため
 
 #### Dockerパッケージの復号化用公開鍵を追加
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. `/etc/apt`配下に公開鍵の格納用フォルダを作成
 
@@ -62,7 +62,7 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 ```
 
 #### リポジトリの設定
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. Dockerパッケージ用のリポジトリの設定を`docker.list`として保存
 
@@ -71,7 +71,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 ```
 
 #### Docker用`apt`パッケージの取得
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. `apt`のパッケージリストを最新化する
 
@@ -86,7 +86,7 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plug
 ```
 
 #### `sudo`なしで`docker`コマンドを使えるようにする
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. Ubuntuのログインユーザーをユーザーグループ`docker`に追加
 
@@ -95,7 +95,7 @@ sudo gpasswd -a (Ubuntuのユーザー名) docker
 ```
 
 #### Docker起動
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. Dockerデーモンを起動
 
@@ -104,7 +104,7 @@ sudo service docker start
 ```
 
 #### インストール確認
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 1. `docker`コマンド実行確認
     - エラーが出なければOK
@@ -121,7 +121,7 @@ docker compose version
 ```
 
 #### 参考：WSL(Ubuntu)が手に負えない状態になったときのやり直し方
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. スタート → 設定 → アプリ → Ubuntu 20.04
 2. 詳細オプション → 「リセット」ボタン
@@ -131,7 +131,7 @@ docker compose version
   - `Error code: Wsl/Service/CreateInstance/MountVhd/ERROR_FILE_NOT_FOUND`
 - その際は、以下を実施してからUbuntuを再起動する
 
-![](https://img.shields.io/badge/-Powershell-blue)
+![Powershell](https://img.shields.io/badge/-Powershell-blue)
 
 1. WSLからUbuntuの登録を解除
     - WSLに登録中のLinuxディストリビューションは、`wsl -l`で確認できる
@@ -143,14 +143,14 @@ wsl --unregister Ubuntu-20.04
 ### Install code
 
 #### ソースフォルダ配置
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. エクスプローラーから`\\wsl$\Ubuntu-20.04\home\(Linuxユーザー名)`にソースコードを配置
     - `\\wsl$`配下以外の場所でコンテナを生成する場合、生成処理に大きく時間がかかる
       - WSLとWindows間でファイルの同期処理が走るため
 
 #### Git Config変更
-![](https://img.shields.io/badge/-Powershell-blue)
+![Powershell](https://img.shields.io/badge/-Powershell-blue)
 
 1. 配置したソースフォルダのパスをGit Configのセーフディレクトリとして追加
     - Git操作時に以下のエラーが出ることへの対処
@@ -163,11 +163,11 @@ git config --global --add safe.directory `%(prefix)///wsl.localhost/Ubuntu-20.04
 ## Usage
 
 ### Routine
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. WindowsターミナルでWSL(Ubuntu)を起動
 
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 2. Dockerデーモンを起動
 
@@ -190,11 +190,11 @@ docker compose down
 ```
 
 ### Change Dockerfile
-![](https://img.shields.io/badge/-Windows-blue)
+![Windows](https://img.shields.io/badge/-Windows-blue)
 
 1. Dockerfileを編集して保存
 
-![](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
+![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
 
 2. Dockerコンテナ破棄
 
