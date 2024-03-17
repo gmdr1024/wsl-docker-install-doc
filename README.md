@@ -11,7 +11,7 @@ Document for Docker dev
 
 1. [Windows Terminal - Microsoft Store](https://aka.ms/terminal)からWindowsターミナルをインストール
 
-### Install WSL2 & Ubuntu 20.04 LTS
+### Install WSL2 & Ubuntu 22.04
 - [参考：公式手順](https://learn.microsoft.com/ja-jp/windows/wsl/install) 
 
 #### WSLとUbuntuをインストール
@@ -44,7 +44,7 @@ wsl --install -d Ubuntu-22.04
 ### Install Docker 
 - [参考：公式手順](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 - `Set up the repository`の序盤の手順については対応不要のため省略している
-  - 序盤の手順内の`apt`パッケージは`Ubuntu-20.04 LTS`ではすべて初期状態でインストール済であるため
+  - 序盤の手順内の`apt`パッケージは`Ubuntu-22.04`ではすべて初期状態でインストール済であるため
 
 #### Dockerパッケージの復号化用公開鍵を追加
 ![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
@@ -127,7 +127,7 @@ docker compose version
 #### 参考：WSL(Ubuntu)が手に負えない状態になったときのやり直し方
 ![Windows](https://img.shields.io/badge/-Windows-blue)
 
-1. スタート → 設定 → アプリ → Ubuntu 20.04
+1. スタート → 設定 → アプリ → Ubuntu 22.04
 2. 詳細オプション → 「リセット」ボタン
 
 ##### 補足
@@ -141,7 +141,7 @@ docker compose version
     - WSLに登録中のLinuxディストリビューションは、`wsl -l`で確認できる
 
 ```bash
-wsl --unregister Ubuntu-20.04
+wsl --unregister Ubuntu-22.04
 ```
 
 ### Install code
@@ -149,7 +149,7 @@ wsl --unregister Ubuntu-20.04
 #### ソースフォルダ配置
 ![Windows](https://img.shields.io/badge/-Windows-blue)
 
-1. エクスプローラーから`\\wsl$\Ubuntu-20.04\home\(Linuxユーザー名)`にソースコードを配置
+1. エクスプローラーから`\\wsl$\Ubuntu-22.04\home\(Linuxユーザー名)`にソースコードを配置
     - `\\wsl$`配下以外の場所でコンテナを生成する場合、生成処理に大きく時間がかかる
       - WSLとWindows間でファイルの同期処理が走るため
 
@@ -158,10 +158,10 @@ wsl --unregister Ubuntu-20.04
 
 1. 配置したソースフォルダのパスをGit Configのセーフディレクトリとして追加
     - Git操作時に以下のエラーが出ることへの対処
-      - `fatal: detected dubious ownership in repository at '//wsl.localhost/Ubuntu-20.04/home/(Linuxユーザー名)/(ソースフォルダ名)'`
+      - `fatal: detected dubious ownership in repository at '//wsl.localhost/Ubuntu-22.04/home/(Linuxユーザー名)/(ソースフォルダ名)'`
 
 ```Powershell
-git config --global --add safe.directory `%(prefix)///wsl.localhost/Ubuntu-20.04/home/(Linuxユーザー名)/(ソースフォルダ名)`
+git config --global --add safe.directory `%(prefix)///wsl.localhost/Ubuntu-22.04/home/(Linuxユーザー名)/(ソースフォルダ名)`
 ```
 
 ## Usage
