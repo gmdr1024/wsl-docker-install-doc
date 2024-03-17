@@ -23,14 +23,14 @@ Document for Docker dev
 1. WSLとUbuntuをインストール
 
 ```PowerShell
-wsl --install -d Ubuntu-20.04
+wsl --install -d Ubuntu-22.04
 ```
 
 ##### WSLをインストール済の場合
 
 ![Windows](https://img.shields.io/badge/-Windows-blue)
 
-1. [Ubuntu 20.04 - Microsoft Store](https://apps.microsoft.com/store/detail/ubuntu-2004/9N6SVWS3RX71?hl=ja-jp&gl=jp)からUbuntuをインストール
+1. [Ubuntu 22.04 - Microsoft Store](https://www.microsoft.com/store/productId/9PN20MSR04DW?ocid=pdpshare)からUbuntuをインストール
 
 #### Ubuntu初期設定
 ![Windows](https://img.shields.io/badge/-Windows-blue)
@@ -43,8 +43,8 @@ wsl --install -d Ubuntu-20.04
 
 ### Install Docker 
 - [参考：公式手順](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
-- `Set up the repository`の`1.`の手順については対応不要のため省略している
-  - `1.`の手順内の`apt`パッケージは`Ubuntu-20.04 LTS`ではすべて初期状態でインストール済であるため
+- `Set up the repository`の序盤の手順については対応不要のため省略している
+  - 序盤の手順内の`apt`パッケージは`Ubuntu-20.04 LTS`ではすべて初期状態でインストール済であるため
 
 #### Dockerパッケージの復号化用公開鍵を追加
 ![WSL(Ubuntu)](https://img.shields.io/badge/-WSL(Ubuntu)-orange)
@@ -55,10 +55,11 @@ wsl --install -d Ubuntu-20.04
 sudo mkdir -m 0755 -p /etc/apt/keyrings
 ```
 
-2. Dockerパッケージの復号化用公開鍵を取得し、バイナリ化してから`docker.gpg`として保存
+2. Dockerパッケージの復号化用公開鍵を取得し、バイナリ化してから`docker.asc`として保存し、権限設定
 
 ```bash
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
 #### リポジトリの設定
@@ -67,7 +68,10 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o 
 1. Dockerパッケージ用のリポジトリの設定を`docker.list`として保存
 
 ```bash
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 #### Docker用`apt`パッケージの取得
