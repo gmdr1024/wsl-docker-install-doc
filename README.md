@@ -1,5 +1,5 @@
-# docker-dev-doc
-Document for Docker dev
+# wsl-docker-install-doc
+- WSL2 + Docker CLIのインストール手順
 
 ## Requirement
 - Windows 10
@@ -52,7 +52,7 @@ wsl --install -d Ubuntu-22.04
 1. `/etc/apt`配下に公開鍵の格納用フォルダを作成
 
 ```bash
-sudo mkdir -m 0755 -p /etc/apt/keyrings
+sudo install -m 0755 -d /etc/apt/keyrings
 ```
 
 2. Dockerパッケージの復号化用公開鍵を取得し、バイナリ化してから`docker.asc`として保存し、権限設定
